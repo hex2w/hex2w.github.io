@@ -32,7 +32,7 @@
             data.forEach(repo => slot.innerHTML += `
                 <li>
                     <a href="https://${repo.owner}.github.io/${repo.name}">${repo.owner}.github.io/${repo.name}</a><br>
-                    Repository URL: <a href="https://${repo.url}">${repo.url}</a><br>
+                    Repository URL: <a href="${repo.url}">${repo.url}</a><br>
                     ${repo.description ? "Description: " + repo.description : ""}
                 </li>
             `)

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Pages enabled repositories</title>
+</head>
+<body>
+    <div>
+        <ul id="slot"></ul>
+    </div>
+
+    <script>
+        let repos
+        const slot = document.getElementById("slot")
+
+        const pickRepos = data => {
+            let picked = []
+            data.forEach(item => {
+                if (item["has_pages"]) picked.push({
+                    owner: item["owner"]["login"],
+                    name: item["name"],
+                    url: item["html_url"],
+                    description: item["description"]
+                })
+            })
+            return picked
+        }
+
+        const displayRepos = data => {
+            data.forEach(repo => slot.innerHTML += `
+                <li>
+                    <a href="${repo.owner}.github.io/${repo.name}">${repo.owner}.github.io/${repo.name}</a><br>
+                    Repository URL: <a href="${repo.url}">${repo.url}</a><br>
+                    ${repo.description ? "Description: " + repo.description : ""}
+                </li>
+            `)
+        }
+
+        fetch("https://api.github.com/users/hex3928/repos")
+            .then(res => res.json())
+            .then(res => repos = pickRepos(res))
+            .then(_ => console.log(repos))
+            .then(_ => displayRepos(repos))
+    </script>
+</body>
+</html>

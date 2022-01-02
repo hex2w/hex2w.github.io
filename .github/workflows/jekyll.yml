@@ -7,10 +7,9 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
+  do_nothing:
 
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
     - run: echo "NO JEKYLL!!!!"

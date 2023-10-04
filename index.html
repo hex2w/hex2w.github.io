@@ -58,7 +58,7 @@
             `)
         }
 
-        fetch("https://api.github.com/users/hex2w/repos")
+        fetch("https://api.github.com/users/hexrw/repos")
             .then(res => res.json())
             .then(res => repos = pickRepos(res))
             .then(_ => console.log(repos))
